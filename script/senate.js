@@ -6,23 +6,24 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
 .then(json =>{
     let members = json.results[0].members;
     console.log(members)
-    makeTable(members);
+    makeMemberRows(members);
 } ) 
 .catch(err => console.log(err));
 
 
+const makeMemberRows = (x) => {
 
-const makeTable = (x) => {
-
-  const tbody = document.getElementById("new_tbody");
+  const tbody = document.getElementById("tbody");
 
   for (let i = 0; i < x.length; i++) {
 
     const tr = document.createElement("tr");
     tbody.appendChild(tr);
 
-    const name = tr.insertCell(0);
-    name.innerHTML = x[i].first_name + "" + x[i].last_name;
+    const link = document.createElement("a");
+    link.textContent = x[i].first_name + " " + x[i].last_name;
+    link.setAttribute("href", x[i].url)
+    tr.insertCell(0).append(link);
 
     const party = tr.insertCell(1);
     party.innerHTML = x[i].party;
