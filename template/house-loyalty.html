@@ -2,36 +2,54 @@
 <html lang="en">
   <head>
     <title>Party Loyalty</title>
-    <link rel="stylesheet" href="./tgif.css">
+    <link rel="shortcut icon" href="../asset/media/favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/tgif.css">
     </head>
     
     <body>
       <a class="logo" href="./home.html">TGIF</a>
-      <nav>
-        <ul>
-          <li><a class="button" href="./home.html">Home</a></li>
-          <li class="dropdown">
-            <button class="button dropdown-btn">Congress 113</button>
-            <ul class="dropdown-items">
-              <li><a href="./senate.html">Senate</a></li>
-              <li><a href="./house.html">House</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <button class="button dropdown-btn">Attendance</button>
-            <ul class="dropdown-items">
-              <li><a href="./senate-attendance.html">Senate</a></li>
-              <li><a href="./house-attendance.html">House</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <button class="button dropdown-btn">Loyalty</button>
-            <ul class="dropdown-items">
-              <li><a href="./senate-loyalty.html">Senate</a></li>
-              <li><a href="./house-loyalty.html">House</a></li>
-            </ul>
-          </li>
-        </ul>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Congress 113</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Senate</a></li>
+                  <li><a class="dropdown-item" href="#">House</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Attendance
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Senate</a></li>
+                  <li><a class="dropdown-item" href="#">House</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Loyalty
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Senate</a></li>
+                  <li><a class="dropdown-item" href="#">House</a></li>
+                  </ul>
+              </li>
+             </li>
+           </div>
+        </div>
       </nav>
 
     <div>
@@ -161,6 +179,7 @@
         </tbody>
       </table>
   	</div>
-    <script src="tgif.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../script/tgif.js"></script>
 </body>
 </html>
