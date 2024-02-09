@@ -49,7 +49,7 @@ a.logo a, a.logo:visited {
 }
 
 .logo::before {
-  content: url('./logo.png');
+  content: url('/asset/media/logo.png');
   height: 50px;
   width: auto;
 }
