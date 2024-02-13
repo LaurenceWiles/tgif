@@ -7,7 +7,6 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
   let members = json.results[0].members;
   partiesFilter(members);
   allEventListener(members);
-  
   } ) 
 .catch(err => console.log(err));
 
@@ -20,23 +19,29 @@ const fetchStates = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    const states = data;
-    console.log(data,'data')
-  
-    makeStatesDropdown(states)
+    makeStatesDropdown(data)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
-  
 };
 
 fetchStates();
 
-
 const makeMemberRows = (arr) => {
-
+  
+  let check = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
+  console.log(check);
   const tbody = document.getElementById("tbody");
   tbody.innerHTML = "";
+
+if (arr.length === 0) {
+  if (check.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5">Please select a party</td></tr>';
+  } else {
+    tbody.innerHTML = '<tr><td colspan="5">There are currently no representatives that match your search criteria</td></tr>'
+  }
+  
+}
 
   for (let i = 0; i < arr.length; i++) {
 
@@ -68,11 +73,11 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]')
 let selector =document.getElementById('selectState');
 
 const partiesFilter = (arr) => {
-   let check = Array.from(checkboxes).filter(i => i.checked) .map(i => i.value); 
+   let check = Array.from(checkboxes).filter(i => i.checked).map(i => i.value); 
    let state = selector.value; 
    let filterarr = []; 
-   if (check.length == 0 && state =="") {
-     filterarr = arr;
+   if (check.length == 0 ) {
+     filterarr = [];
    } else {
      arr.forEach(element => {
       if (check.length !== 0 && state == "All states") {
@@ -93,13 +98,7 @@ const partiesFilter = (arr) => {
 let statesDropdown = document.getElementById("selectState");
 
 const makeStatesDropdown = (obj) => {
-
-const selectState = document.createElement("option");
-selectState.textContent = "Select a state";
-selectState.setAttribute("value", "");
-statesDropdown.appendChild(selectState);
-
-Object.entries(obj).forEach(([code, name]) => {
+  Object.entries(obj).forEach(([code, name]) => {
   let stateOptions = document.createElement('option');
   stateOptions.value = `${code}`;
   stateOptions.innerHTML =  `${name}`;
@@ -123,37 +122,6 @@ function allEventListener(arr){
   });
 }
 
-/*
-const statesDropdown = document.getElementById("states_dropdown");
-const stateA = document.createElement("a");
-stateA.textContent = "hello";
-const stateLi = document.createElement("li");
-stateLi.appendChild(stateA);
-statesDropdown.appendChild(stateLi);
-
-let  enabledSettings = Array.from(checkboxes) // Convert checkboxes to an array to use filter and map.
-                              .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
-                              .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
-
-    
-
-
-/*fetch('https://gist.github.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_hash.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(json => {
-    let states = json;
-    console.log(states);
-  })
-  .catch(err => console.error('Error fetching data:', err));
-
-  /src/states_hash.json
-
-*/
 
 
 
