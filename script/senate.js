@@ -5,12 +5,12 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
 .then(response => response.json()) 
 .then(json =>{
   let members = json.results[0].members;
-  makeMemberRows(members);
   partiesFilter(members);
-  stateFilter()
+  allEventListener(members);
   
   } ) 
 .catch(err => console.log(err));
+
 
 
 const fetchStates = async () => {
@@ -65,56 +65,30 @@ const makeMemberRows = (arr) => {
 
 const checkboxes = document.querySelectorAll('input[type="checkbox"]')
 
+let selector =document.getElementById('selectState');
 
-
-
-  const getCheckedCheckboxes = () => {
-    
-    const checkedCheckboxes = [];
-  
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        checkedCheckboxes.push(checkbox.value);
-      }
-    });
-    
-
-   
-  
-    return checkedCheckboxes;
-  }
-
-  let selectedState = [];
-
-  const partiesFilter = (arr) => {
-  
-    for (let i = 0; i < checkboxes.length; i++) {
-
-      checkboxes[i].addEventListener("change", function (e) {
-      selected = getCheckedCheckboxes();
-      let partyFilter = arr.filter((element) =>  selected.includes(element.party) );
-      console.log(stateFilter())
-      if(stateFilter()!==undefined){
-        console.log('ciao')
-        partyFilter=partyFilter.filter(el=>el.state==stateFilter)
-        console.log(partyFilter)
-      }
-
-      makeMemberRows(partyFilter)
-     
-   });
-  }
+const partiesFilter = (arr) => {
+   let check = Array.from(checkboxes).filter(i => i.checked) .map(i => i.value); 
+   let state = selector.value; 
+   let filterarr = []; 
+   if (check.length == 0 && state =="") {
+     filterarr = arr;
+   } else {
+     arr.forEach(element => {
+      if (check.length !== 0 && state == "All states") {
+        if (check.includes(element.party)) {
+          filterarr.push(element);
+        }
+      }  else {
+         if (check.includes(element.party) && element.state == state) {
+          filterarr.push(element);
+         }
+       }
+     }); 
+   }
+    return makeMemberRows(filterarr);
 }
 
-function stateFilter(){
-  statesDropdown.addEventListener('change', function(e) {
-   console.log(e.target.value)
-    console.log(this.value)
-     
-     return this.value
-    
-     });
-}
 
 let statesDropdown = document.getElementById("selectState");
 
@@ -130,12 +104,24 @@ Object.entries(obj).forEach(([code, name]) => {
   stateOptions.value = `${code}`;
   stateOptions.innerHTML =  `${name}`;
   statesDropdown.appendChild(stateOptions);
-});
-
+  });
 }
 
+function allEventListener(arr){
+  
+  let value = "";
+  selector.addEventListener('change',(event)=>{
+  value =  event.target.value;
+  let midArr = arr.filter(element=>element.state===value);
+  return  partiesFilter(arr)
+  });
 
-
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      return  partiesFilter(arr);
+    });
+  });
+}
 
 /*
 const statesDropdown = document.getElementById("states_dropdown");
@@ -144,6 +130,10 @@ stateA.textContent = "hello";
 const stateLi = document.createElement("li");
 stateLi.appendChild(stateA);
 statesDropdown.appendChild(stateLi);
+
+let  enabledSettings = Array.from(checkboxes) // Convert checkboxes to an array to use filter and map.
+                              .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+                              .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
 
     
 
