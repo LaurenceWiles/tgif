@@ -6,9 +6,31 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
 .then(json =>{
   let members = json.results[0].members;
   makeMemberRows(members);
-  filter(members)
+  partiesFilter(members);
+  stateFilter()
+  
   } ) 
 .catch(err => console.log(err));
+
+
+const fetchStates = async () => {
+  try {
+    const response = await fetch('/src/states_hash.json');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    const states = data;
+    console.log(data,'data')
+  
+    makeStatesDropdown(states)
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+  
+};
+
+fetchStates();
 
 
 const makeMemberRows = (arr) => {
@@ -41,37 +63,109 @@ const makeMemberRows = (arr) => {
   }
 }
 
+const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+
+
+
   const getCheckedCheckboxes = () => {
     
-    const checkboxInput = document.querySelectorAll('input[type="checkbox"]');
     const checkedCheckboxes = [];
   
-    checkboxInput.forEach((checkbox) => {
+    checkboxes.forEach((checkbox) => {
       if (checkbox.checked) {
         checkedCheckboxes.push(checkbox.value);
       }
     });
+    
+
+   
   
     return checkedCheckboxes;
   }
 
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]')
-  let selected = [];
+  let selectedState = [];
 
-  const filter = (arr) => {
-
-  for (let i = 0; i < checkboxes.length; i++) {
+  const partiesFilter = (arr) => {
+  
+    for (let i = 0; i < checkboxes.length; i++) {
 
       checkboxes[i].addEventListener("change", function (e) {
-      
       selected = getCheckedCheckboxes();
+      let partyFilter = arr.filter((element) =>  selected.includes(element.party) );
+      console.log(stateFilter())
+      if(stateFilter()!==undefined){
+        console.log('ciao')
+        partyFilter=partyFilter.filter(el=>el.state==stateFilter)
+        console.log(partyFilter)
+      }
 
-      let filterArr = arr.filter((element) => selected.includes(element.party));
-      makeMemberRows(filterArr);
-      
-    });
+      makeMemberRows(partyFilter)
+     
+   });
   }
 }
+
+function stateFilter(){
+  statesDropdown.addEventListener('change', function(e) {
+   console.log(e.target.value)
+    console.log(this.value)
+     
+     return this.value
+    
+     });
+}
+
+let statesDropdown = document.getElementById("selectState");
+
+const makeStatesDropdown = (obj) => {
+
+const selectState = document.createElement("option");
+selectState.textContent = "Select a state";
+selectState.setAttribute("value", "");
+statesDropdown.appendChild(selectState);
+
+Object.entries(obj).forEach(([code, name]) => {
+  let stateOptions = document.createElement('option');
+  stateOptions.value = `${code}`;
+  stateOptions.innerHTML =  `${name}`;
+  statesDropdown.appendChild(stateOptions);
+});
+
+}
+
+
+
+
+/*
+const statesDropdown = document.getElementById("states_dropdown");
+const stateA = document.createElement("a");
+stateA.textContent = "hello";
+const stateLi = document.createElement("li");
+stateLi.appendChild(stateA);
+statesDropdown.appendChild(stateLi);
+
+    
+
+
+/*fetch('https://gist.github.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_hash.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(json => {
+    let states = json;
+    console.log(states);
+  })
+  .catch(err => console.error('Error fetching data:', err));
+
+  /src/states_hash.json
+
+*/
+
+
 
 
 
