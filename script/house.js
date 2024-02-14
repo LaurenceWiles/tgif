@@ -1,16 +1,13 @@
-fetch('https://api.propublica.org/congress/v1/116/house/members.json', {
-  method: "GET",
-  headers: {"X-API-Key": "UVVvqCK54Y6JY05Ll0LHPDhRIxd3DWEgPM1zNn9G"}
-})
+fetch('/src/pro-congress-116-house-json')
 .then(response => response.json()) 
 .then(json =>{
   let members = json.results[0].members;
-  console.log(members)
-  makeMemberRows(members);
+  console.log(members);
   partiesFilter(members);
   allEventListener(members);
   } ) 
 .catch(err => console.log(err));
+
 
 const fetchStates = async () => {
     try {
@@ -26,6 +23,8 @@ const fetchStates = async () => {
   };
 
 fetchStates()
+
+console.log('hola')
 
 const makeMemberRows = (arr) => {
   
