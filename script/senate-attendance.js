@@ -5,7 +5,7 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
 .then(response => response.json()) 
 .then(json =>{
   let members = json.results[0].members;
-  membersArr = [...members]
+  membersArr = [...members];
   atAGlanceTable(membersArr);
   leastEngagedTable(membersArr)
   mostEngagedTable(membersArr);

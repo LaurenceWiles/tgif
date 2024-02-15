@@ -2,7 +2,6 @@ fetch('/src/pro-congress-116-house-json')
 .then(response => response.json()) 
 .then(json =>{
   let members = json.results[0].members;
-  console.log(members);
   partiesFilter(members);
   allEventListener(members);
   } ) 
@@ -29,7 +28,6 @@ console.log('hola')
 const makeMemberRows = (arr) => {
   
     let check = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
-    console.log(check);
     const tbody = document.getElementById("tbody");
     tbody.innerHTML = "";
   

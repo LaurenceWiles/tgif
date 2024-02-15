@@ -30,7 +30,6 @@ fetchStates();
 const makeMemberRows = (arr) => {
   
   let check = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
-  console.log(check);
   const tbody = document.getElementById("tbody");
   tbody.innerHTML = "";
 
