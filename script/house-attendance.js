@@ -79,6 +79,8 @@ const atAGlanceTable = (arr) => {
         leastEngaged.push(sorted[i]);
       }
     }
+
+    leastEngaged = leastEngaged.slice(0, 10)
   
     const tbody = document.getElementById('least_engaged_tbody')
     for (let i = 0; i < leastEngaged.length; i++) {
@@ -113,6 +115,8 @@ const atAGlanceTable = (arr) => {
         mostEngaged.push(sorted[i]);
       }
     }
+
+    mostEngaged = mostEngaged.slice(0, 10);
   
     const tbody = document.getElementById('most_engaged_tbody')
     for (let i = 0; i < mostEngaged.length; i++) {
