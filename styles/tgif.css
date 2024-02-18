@@ -214,6 +214,16 @@ p {
   border-color: black;
 }
 
+.senate-logo-small {
+  max-width: 25%;
+}
+
+.senate-logo-div {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7%;
+}
+
 footer {
   background-color: #f8f9fa;
   padding: 20px 0;

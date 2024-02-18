@@ -23,27 +23,27 @@ const atAGlanceTable = (arr) => {
   document.getElementById('democrat_reps').innerHTML = nrDemocrat;
   document.getElementById('independent_reps').innerHTML = nrIndependent;
 
-  let repubLoyaltyTotal = 0;
-  let demLoyaltyTotal = 0;
-  let indyLoyaltyTotal = 0;
+  let repubMissedTotal = 0;
+  let demMissedTotal = 0;
+  let indyMissedTotal = 0;
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].party === "R") {
-      repubLoyaltyTotal += arr[i].votes_with_party_pct;
+      repubMissedTotal += arr[i].missed_votes_pct;
     } else if (arr[i].party === "D") {
-      demLoyaltyTotal += arr[i].votes_with_party_pct;
+      demMissedTotal += arr[i].missed_votes_pct;
     } else {
-      indyLoyaltyTotal += arr[i].votes_with_party_pct;
+      indyMissedTotal += arr[i].missed_votes_pct;
     }
   }
 
-  let repAvLoyalty = repubLoyaltyTotal / nrRepublicans;
-  let demAvLoyalty = demLoyaltyTotal / nrDemocrat;
-  let indyAvLoyalty = indyLoyaltyTotal / nrIndependent;
+  let repAvMissed = repubMissedTotal / nrRepublicans;
+  let demAvMissed = demMissedTotal / nrDemocrat;
+  let indyAvMissed = indyMissedTotal / nrIndependent;
 
-  document.getElementById('republican_loyalty').innerHTML = Math.round(repAvLoyalty * 100) / 100;
-  document.getElementById('democrat_loyalty').innerHTML = Math.round(demAvLoyalty * 100) / 100;
-  document.getElementById('independent_loyalty').innerHTML = Math.round(indyAvLoyalty * 100) /100;
+  document.getElementById('republican_missed').innerHTML = Math.round(repAvMissed * 100) / 100;
+  document.getElementById('democrat_missed').innerHTML = Math.round(demAvMissed * 100) / 100;
+  document.getElementById('independent_missed').innerHTML = Math.round(indyAvMissed * 100) /100;
 
 } 
 
@@ -60,8 +60,6 @@ const leastEngagedTable = (arr) => {
       leastEngaged.push(sorted[i]);
     }
   }
-
-  leastEngaged=leastEngaged.slice(0,10);
 
   const tbody = document.getElementById('least_engaged_tbody')
   for (let i = 0; i < leastEngaged.length; i++) {
@@ -95,7 +93,6 @@ const mostEngagedTable = (arr) => {
     }
   }
 
-  mostEngaged = mostEngaged.slice(0, 10)
 
   const tbody = document.getElementById('most_engaged_tbody')
   for (let i = 0; i < mostEngaged.length; i++) {

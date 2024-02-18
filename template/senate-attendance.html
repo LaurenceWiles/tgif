@@ -5,54 +5,66 @@
     <link rel="shortcut icon" href="../asset/media/favicon.ico" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/tgif.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     
     <body>
-      <a class="logo" href="./home.html">TGIF</a>
-
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="home.html">Home</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
+          <a class="navbar-brand" href="home.html">
+            <img src="/asset/media/logo.png" alt="TGIF Logo" class="img-fluid logo"> 
+          </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"></a>
+                <a class="nav-link active" aria-current="page" href="home.html"><span class="tgif-link">TGIF</span><span class="copyright-symbol">&copy;</span></a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Congress 113</a>
+                  <span class="dropdown-text">Congress 116</span>
+                </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="senate.html">Senate</a></li>
-                  <li><a class="dropdown-item" href="home.html">House</a></li>
-                  </ul>
+                  <li><a class="dropdown-item" href="house.html">House</a></li>
+                </ul>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Attendance
+                  <span class="dropdown-text">Attendance</span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="senate-attendance.html">Senate</a></li>
                   <li><a class="dropdown-item" href="house-attendance.html">House</a></li>
+                </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="dropdown-text">Loyalty</span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="senate-loyalty.html">Senate</a></li>
+                    <li><a class="dropdown-item" href="house-loyalty.html">House</a></li>
                   </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Loyalty
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="senate-loyalty.html">Senate</a></li>
-                  <li><a class="dropdown-item" href="house-loyalty.html">House</a></li>
-                  </ul>
-              </li>
-             </li>
-           </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0"> 
+              
+                <li class="nav-item email-link">
+                  <a class="nav-link active" aria-current="page" href="mailto:info@tgif.net"><i class="fas fa-envelope"></i> info@tgif.net</a>
+                </li>
+              </ul>
+          </div>
         </div>
       </nav>
-
     <div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-6">
       <h1>Attendance</h1>
 
       <p>
@@ -70,38 +82,52 @@
         electronic device. In the case of a tie, the motion in question fails. In the Senate,
         the Vice President may (if present) cast the tiebreaking vote.
       </p>
-  	  
-      <h2>Senate at a Glance</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Party</th>
-            <th>Number of Reps</th>
-            <th>% Voted with Prty</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Republican</td>
-            <td id="republican_reps">--</td>
-            <td id="republican_loyalty">--</td>
-          </tr>
-          <tr>
-            <td>Democrat</td>
-            <td id="democrat_reps">--</td>
-            <td id="democrat_loyalty">--</td>
-          </tr>
-          <tr>
-            <td>Independent</td>
-            <td id="independent_reps">--</td>
-            <td id="independent_loyalty">--</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Least Engaged (Bottom 10% Attendance)</h2>
-      <table>
+  	  </div>
+      <div class="col-md-6">
+        <div class="container mt-5">
+          <h2>Senate at a Glance</h2>
+    
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Number of Reps</th>
+                <th>% Votes Missed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Republican</td>
+                <td id="republican_reps">--</td>
+                <td id="republican_missed">--</td>
+              </tr>
+              <tr>
+                <td>Democrat</td>
+                <td id="democrat_reps">--</td>
+                <td id="democrat_missed">--</td>
+              </tr>
+              <tr>
+                <td>Independent</td>
+                <td id="independent_reps">--</td>
+                <td id="independent_missed">--</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="senate-logo-div">
+            <img src="/asset/media/Seal_of_the_United_States_Senate.svg.png" class="img-fluid senate-logo-small">
+              </div>
+        </div>
+      </div>
+      </div>
+      <br>
+      
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-6">
+      <h2>Least Engaged (Bottom 10%)</h2>
+      <div class="table-container">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Name</th>
@@ -113,9 +139,12 @@
           
         </tbody>
       </table>
-
-      <h2>Most Engaged (Top 10% Attendance)</h2>
-      <table>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <h2>Most Engaged (Top 10%)</h2>
+      <div class="table-container">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Name</th>
@@ -126,10 +155,26 @@
         <tbody id="most_engaged_tbody">
         </tbody>
       </table>
-
+      </div>
+      </div>
+      </div>
+      </div>
   	</div>
+    <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6 left-content">
+                  <p>&copy; 2024 TGIF | all rights reserved</p>
+              </div>
+              <div class="col-md-6 right-content">
+                  <p><i class="fas fa-envelope"></i> info@tgif.net</p>
+              </div>
+          </div>
+      </div>
+  </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../script/tgif.js"></script>
     <script src="/script/senate-attendance.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
