@@ -20,46 +20,46 @@ const atAGlanceTable = (arr) => {
     document.getElementById('democrat_reps').innerHTML = nrDemocrat;
     document.getElementById('independent_reps').innerHTML = nrIndependent;
   
-    let repubLoyaltyTotal = 0;
-    let demLoyaltyTotal = 0;
-    let indyLoyaltyTotal = 0;
+    let repubMissedTotal = 0;
+    let demMissedTotal = 0;
+    let indyMissedTotal = 0;
 
-    let repubNoLoyaltyInfo = 0;
-    let demNoLoyaltyInfo = 0;
-    let indyNoLoyaltyInfo = 0;
+    let repubNoMissedInfo = 0;
+    let demNoMissedInfo = 0;
+    let indyNoMissedInfo = 0;
   
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].party === "R") {
-        if (isNaN(arr[i].votes_with_party_pct)) {
-            repubNoLoyaltyInfo++;
-        } else if (!isNaN(arr[i].votes_with_party_pct)) {
-            repubLoyaltyTotal += arr[i].votes_with_party_pct;
+        if (isNaN(arr[i].missed_votes_pct)) {
+            repubNoMissedInfo++;
+        } else if (!isNaN(arr[i].missed_votes_pct)) {
+            repubMissedTotal += arr[i].missed_votes_pct;
         }
         } else if (arr[i].party === "D") {
-            if (isNaN(arr[i].votes_with_party_pct)) {
-                demNoLoyaltyInfo++
-            } else if (!isNaN(arr[i].votes_with_party_pct)) {
-            demLoyaltyTotal += arr[i].votes_with_party_pct;
+            if (isNaN(arr[i].missed_votes_pct)) {
+                demNoMissedInfo++
+            } else if (!isNaN(arr[i].missed_votes_pct)) {
+            demMissedTotal += arr[i].missed_votes_pct;
             }
             } else { 
-                if (isNaN(arr[i].votes_with_party_pct)) {
-                    indyNoLoyaltyInfo++
-                } else if (!isNaN(arr[i].votes_with_party_pct)) {
-                    indyLoyaltyTotal += arr[i].votes_with_party_pct;
+                if (isNaN(arr[i].missed_votes_pct)) {
+                    indyNoMissedInfo++
+                } else if (!isNaN(arr[i].missed_votes_pct)) {
+                    indyMissedTotal += arr[i].missed_votes_pct;
                 }
         }
     }
 
-    let repAvLoyalty = repubLoyaltyTotal / (nrRepublicans - repubNoLoyaltyInfo);
-    let demAvLoyalty = demLoyaltyTotal / (nrDemocrat - demNoLoyaltyInfo);
-    let indyAvLoyalty = indyLoyaltyTotal / (nrIndependent - indyNoLoyaltyInfo);
+    let repAvMissed = repubMissedTotal / (nrRepublicans - repubNoMissedInfo);
+    let demAvMissed = demMissedTotal / (nrDemocrat - demNoMissedInfo);
+    let indyAvMissed = indyMissedTotal / (nrIndependent - indyNoMissedInfo);
   
-    document.getElementById('republican_loyalty').innerHTML = Math.round(repAvLoyalty * 100) / 100;
-    document.getElementById('democrat_loyalty').innerHTML = Math.round(demAvLoyalty * 100) / 100;
+    document.getElementById('republican_missed').innerHTML = Math.round(repAvMissed * 100) / 100;
+    document.getElementById('democrat_missed').innerHTML = Math.round(demAvMissed * 100) / 100;
     if (nrIndependent === 0) {
-        document.getElementById('independent_loyalty').innerHTML = 0;
+        document.getElementById('independent_missed').innerHTML = 0;
     } else {
-        document.getElementById('independent_loyalty').innerHTML = Math.round(indyAvLoyalty * 100) /100; 
+        document.getElementById('independent_missed').innerHTML = Math.round(indyAvMissed * 100) /100; 
     }
   
   } 
@@ -80,7 +80,6 @@ const atAGlanceTable = (arr) => {
       }
     }
 
-    leastEngaged = leastEngaged.slice(0, 10)
   
     const tbody = document.getElementById('least_engaged_tbody')
     for (let i = 0; i < leastEngaged.length; i++) {
@@ -116,7 +115,7 @@ const atAGlanceTable = (arr) => {
       }
     }
 
-    mostEngaged = mostEngaged.slice(0, 10);
+
   
     const tbody = document.getElementById('most_engaged_tbody')
     for (let i = 0; i < mostEngaged.length; i++) {
