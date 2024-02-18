@@ -4,7 +4,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   padding-top: 76px;
 }
 
@@ -38,6 +38,7 @@ nav > ul > li {
   z-index: 1000;
   background: #d3d3d3;
   opacity: 95%;
+  padding-top: 15px;
 }
 
 .navbar .nav-link {
@@ -58,7 +59,15 @@ nav > ul > li {
   padding: 10px;
 }
 
-/* Custom hamburger menu lines */
+.tgif-link {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.email-link {
+  padding-top: 12px;
+}
+
 .navbar-toggler span {
   background-color: #000;
   display: block;
@@ -136,22 +145,6 @@ p {
   line-height: 1.6;
 }
 
-.logo {
-  font-size: 300%;
-  background-color: white;
-  width: 10em;
-}
-
-a.logo a, a.logo:visited {
-  color: #3498DB;
-}
-
-.logo::before {
-  content: url('/asset/media/logo.png');
-  height: 50px;
-  width: auto;
-}
-
 .dropdown-btn {
   color: white;
   background-color: transparent;
@@ -169,6 +162,7 @@ a.logo a, a.logo:visited {
 
 .dropdown {
   display: inline-block;
+  padding-top: 12px
 }
 
 .dropdown-items {
@@ -207,6 +201,19 @@ a.logo a, a.logo:visited {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
 } 
 
+
+
+.table-container {
+  max-height: 400px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+.table,
+.table th,
+.table td {
+  border-color: black;
+}
+
 footer {
   background-color: #f8f9fa;
   padding: 20px 0;
@@ -216,6 +223,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  margin-top: 50px;
 }
 
 footer p {
@@ -241,6 +249,19 @@ footer .right-content {
   }
   footer .right-content p {
       display: block;
+  }
+  .logo {
+    max-width: 75%; /* Adjust the size as needed */
+  }
+  .senate-logo {
+    max-width: 75%;
+  }
+  .navbar-brand {
+    margin: 0;
+  }
+  .senate-logo-div {
+    display: flex;
+    justify-content: center;
   }
 }
 
