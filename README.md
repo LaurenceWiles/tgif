@@ -19,7 +19,7 @@ Transparent Government in Fact (TGIF) is a non-partisan non-profit group aiming 
 
 -**Fetch API** for data retrieval
 
--**HTML CSS** and **Bootstrap** for webpage structure and styling
+-**HTML**, **CSS** and **Bootstrap** for webpage structure and styling
 
 ### How to Use:
 Clone the repository to your local machine.
