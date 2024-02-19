@@ -9,9 +9,9 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
   atAGlanceTable(membersArr);
   leastEngagedTable(membersArr)
   mostEngagedTable(membersArr);
-  
-  } ) 
+  }) 
 .catch(err => console.log(err));
+
 
 const atAGlanceTable = (arr) => {
 
@@ -56,12 +56,13 @@ const leastEngagedTable = (arr) => {
     leastEngaged.push(sorted[i]);
   }
   for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-    if (sorted[i].missed_votes === leastEngaged[9].missed_votes) {
+    if (sorted[i].missed_votes === leastEngaged[leastEngaged.length - 1].missed_votes) {
       leastEngaged.push(sorted[i]);
     }
   }
 
-  const tbody = document.getElementById('least_engaged_tbody')
+  const tbody = document.getElementById('least_engaged_tbody');
+  
   for (let i = 0; i < leastEngaged.length; i++) {
     
     const tr = document.createElement("tr");
@@ -76,7 +77,6 @@ const leastEngagedTable = (arr) => {
     const percentMissed = tr.insertCell(2);
     percentMissed.innerHTML = leastEngaged[i].missed_votes_pct;
   }
-
 }
 
 const mostEngagedTable = (arr) => {
@@ -88,13 +88,13 @@ const mostEngagedTable = (arr) => {
     mostEngaged.push(sorted[i]);
   }
   for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-    if (sorted[i].missed_votes === mostEngaged[9].missed_votes) {
+    if (sorted[i].missed_votes === mostEngaged[mostEngaged.length - 1].missed_votes) {
       mostEngaged.push(sorted[i]);
     }
   }
 
+  const tbody = document.getElementById('most_engaged_tbody');
 
-  const tbody = document.getElementById('most_engaged_tbody')
   for (let i = 0; i < mostEngaged.length; i++) {
     
     const tr = document.createElement("tr");
@@ -109,6 +109,5 @@ const mostEngagedTable = (arr) => {
     const percentMissed = tr.insertCell(2);
     percentMissed.innerHTML = mostEngaged[i].missed_votes_pct;
   }
-
 }
 

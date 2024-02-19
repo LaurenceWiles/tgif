@@ -11,7 +11,6 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
 .catch(err => console.log(err));
 
 
-
 const fetchStates = async () => {
   try {
     const response = await fetch('/src/states_hash.json');
@@ -19,7 +18,7 @@ const fetchStates = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    makeStatesDropdown(data)
+    makeStatesDropdown(data);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -39,7 +38,6 @@ if (arr.length === 0) {
   } else {
     tbody.innerHTML = '<tr><td colspan="5">There are currently no representatives that match your search criteria</td></tr>'
   }
-  
 }
 
   for (let i = 0; i < arr.length; i++) {
@@ -49,7 +47,7 @@ if (arr.length === 0) {
 
     const link = document.createElement("a");
     link.textContent = arr[i].first_name + " " + arr[i].last_name;
-    link.setAttribute("href", arr[i].url)
+    link.setAttribute("href", arr[i].url);
     tr.insertCell(0).append(link);
 
     const party = tr.insertCell(1);
@@ -67,7 +65,7 @@ if (arr.length === 0) {
   }
 }
 
-const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 let selector =document.getElementById('selectState');
 
@@ -108,10 +106,10 @@ const makeStatesDropdown = (obj) => {
 function allEventListener(arr){
   
   let value = "";
-  selector.addEventListener('change',(event)=>{
+  selector.addEventListener('change', (event) => {
   value =  event.target.value;
-  let midArr = arr.filter(element=>element.state===value);
-  return  partiesFilter(arr)
+  let midArr = arr.filter(element => element.state === value);
+  return partiesFilter(arr);
   });
 
   checkboxes.forEach(function(checkbox) {

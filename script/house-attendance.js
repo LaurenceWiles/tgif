@@ -3,12 +3,12 @@ fetch('/src/pro-congress-116-house-json')
 .then(json =>{
   let members = json.results[0].members;
   membersArr = [...members];
-  console.log(membersArr);
   atAGlanceTable(membersArr);
   leastEngagedTable(membersArr);
   mostEngagedTable(membersArr);
-  } ) 
+  }) 
 .catch(err => console.log(err));
+
 
 const atAGlanceTable = (arr) => {
 
@@ -34,21 +34,21 @@ const atAGlanceTable = (arr) => {
             repubNoMissedInfo++;
         } else if (!isNaN(arr[i].missed_votes_pct)) {
             repubMissedTotal += arr[i].missed_votes_pct;
-        }
+          }
         } else if (arr[i].party === "D") {
             if (isNaN(arr[i].missed_votes_pct)) {
-                demNoMissedInfo++
+                demNoMissedInfo++;
             } else if (!isNaN(arr[i].missed_votes_pct)) {
             demMissedTotal += arr[i].missed_votes_pct;
-            }
+              }
             } else { 
                 if (isNaN(arr[i].missed_votes_pct)) {
-                    indyNoMissedInfo++
+                    indyNoMissedInfo++;
                 } else if (!isNaN(arr[i].missed_votes_pct)) {
                     indyMissedTotal += arr[i].missed_votes_pct;
-                }
-        }
-    }
+                  }
+              }
+          }
 
     let repAvMissed = repubMissedTotal / (nrRepublicans - repubNoMissedInfo);
     let demAvMissed = demMissedTotal / (nrDemocrat - demNoMissedInfo);
@@ -60,8 +60,7 @@ const atAGlanceTable = (arr) => {
         document.getElementById('independent_missed').innerHTML = 0;
     } else {
         document.getElementById('independent_missed').innerHTML = Math.round(indyAvMissed * 100) /100; 
-    }
-  
+      }
   } 
 
   const leastEngagedTable = (arr) => {
@@ -75,13 +74,13 @@ const atAGlanceTable = (arr) => {
         }
       }
     for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-      if (sorted[i].missed_votes === leastEngaged[9].missed_votes) {
+      if (sorted[i].missed_votes === leastEngaged[leastEngaged.length - 1].missed_votes) {
         leastEngaged.push(sorted[i]);
       }
     }
 
-  
-    const tbody = document.getElementById('least_engaged_tbody')
+    const tbody = document.getElementById('least_engaged_tbody');
+    
     for (let i = 0; i < leastEngaged.length; i++) {
       
       const tr = document.createElement("tr");
@@ -107,17 +106,15 @@ const atAGlanceTable = (arr) => {
       if (sorted[i].missed_votes !== null) {
         mostEngaged.push(sorted[i]);
       }
-        
     }
     for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-      if (sorted[i].missed_votes === mostEngaged[9].missed_votes) {
+      if (sorted[i].missed_votes === mostEngaged[mostEngaged.length - 1].missed_votes) {
         mostEngaged.push(sorted[i]);
       }
     }
 
-
-  
-    const tbody = document.getElementById('most_engaged_tbody')
+    const tbody = document.getElementById('most_engaged_tbody');
+    
     for (let i = 0; i < mostEngaged.length; i++) {
       
       const tr = document.createElement("tr");
@@ -132,5 +129,4 @@ const atAGlanceTable = (arr) => {
       const percentMissed = tr.insertCell(2);
       percentMissed.innerHTML = mostEngaged[i].missed_votes_pct;
     }
-  
   }

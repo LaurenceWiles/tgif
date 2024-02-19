@@ -21,9 +21,7 @@ const fetchStates = async () => {
     }
   };
 
-fetchStates()
-
-console.log('hola')
+fetchStates();
 
 const makeMemberRows = (arr) => {
   
@@ -37,7 +35,6 @@ const makeMemberRows = (arr) => {
     } else {
       tbody.innerHTML = '<tr><td colspan="5">There are currently no representatives that match your search criteria</td></tr>'
     }
-    
   }
   
     for (let i = 0; i < arr.length; i++) {
@@ -65,9 +62,9 @@ const makeMemberRows = (arr) => {
     }
   }
 
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-let selector =document.getElementById('selectState');
+  let selector = document.getElementById('selectState');
 
 const partiesFilter = (arr) => {
    let check = Array.from(checkboxes).filter(i => i.checked).map(i => i.value); 
@@ -77,7 +74,7 @@ const partiesFilter = (arr) => {
      filterarr = [];
    } else {
      arr.forEach(element => {
-      if (check.length !== 0 && state == "All states") {
+      if (check.length !== 0 && state === "All states") {
         if (check.includes(element.party)) {
           filterarr.push(element);
         }
@@ -105,10 +102,10 @@ const makeStatesDropdown = (obj) => {
 function allEventListener(arr){
   
     let value = "";
-    selector.addEventListener('change',(event)=>{
+    selector.addEventListener('change', (event) => {
     value =  event.target.value;
-    let midArr = arr.filter(element=>element.state===value);
-    return  partiesFilter(arr)
+    let midArr = arr.filter(element => element.state === value);
+    return partiesFilter(arr)
     });
   
     checkboxes.forEach(function(checkbox) {

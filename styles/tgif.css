@@ -1,19 +1,13 @@
-* {
-  font-family: sans-serif;
-}
 
 body {
   font-family: Arial, sans-serif;
   font-size: 1em;
   padding-top: 76px;
+  margin: 5%;
 }
 
 a {
   text-decoration: none;
-}
-
-body {
-  margin: 5%;
 }
 
 nav {
@@ -26,7 +20,7 @@ nav li {
 }
 
 nav > ul > li {
-  background-color: #3498db;
+  background-color: #ddd;
   display: inline-block;
 }
 
@@ -36,19 +30,14 @@ nav > ul > li {
   top: 0;
   left: 0;
   z-index: 1000;
-  background: #d3d3d3;
+  background-color: #f8f9fa;
   opacity: 95%;
   padding-top: 15px;
-}
-
-.navbar .nav-link {
-  color: black; 
 }
 
 .navbar-toggler-icon, .dropdown-toggle::after {
   display: none;
 }
-
 
 .navbar-toggler {
   width: 48px;
@@ -73,25 +62,11 @@ nav > ul > li {
   display: block;
   height: 3px;
   margin-bottom: 4px;
-  transition: all 0.2s;
   width: 25px;
 }
 
-/* Rotate the lines to form an "X" when menu is open */
-.navbar-toggler.open span:nth-child(1) {
-  transform: rotate(-45deg) translate(-2px, 4px);
-}
-
-.navbar-toggler.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-toggler.open span:nth-child(3) {
-  transform: rotate(45deg) translate(-2px, -4px);
-}
-
 .dropdown-text {
-  color: black;
+  color: #000;
 }
 
 h1 {
@@ -110,7 +85,6 @@ h2 {
 .navbar {
   padding: 1rem;
   margin-bottom: 2rem;
-  background-color: #343a40;
 }
 
 .navbar-brand,
@@ -120,13 +94,9 @@ h2 {
 }
 
 table, th, td {
-  border: 1px solid #3498DB;
+  border: 1px solid;
   border-collapse: collapse;
   padding: 5px;
-}
-
-.button {
-  color: white;
 }
 
 .btn {
@@ -136,9 +106,10 @@ table, th, td {
 
 .container {
   padding: 2rem;
-  border: 1px solid #ddd; /* Subtle border */
+  border: 1px solid #ddd; 
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  background: #f8f8f8;
 }
 
 p {
@@ -146,7 +117,6 @@ p {
 }
 
 .dropdown-btn {
-  color: white;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -154,10 +124,6 @@ p {
 
 .dropdown-btn::after {
   content: "\25BC";
-}
-
-.dropdown:hover, .dropbtn:focus {
-  background-color: #2980B9;
 }
 
 .dropdown {
@@ -193,7 +159,7 @@ p {
   background-color: lightgray;
 }
 
-.capitol_pic {
+.capitol-pic {
   width: 100%;
   height: auto;
   border: 1px solid #ddd; 
@@ -201,11 +167,10 @@ p {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
 } 
 
-
-
 .table-container {
-  max-height: 400px; /* Adjust the maximum height as needed */
+  max-height: 400px; 
   overflow-y: auto;
+  margin-bottom: 35px
 }
 
 .table,
@@ -224,6 +189,12 @@ p {
   margin-top: 7%;
 }
 
+.loyalty-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 footer {
   background-color: #f8f9fa;
   padding: 20px 0;
@@ -233,7 +204,8 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  margin-top: 50px;
+  margin-top: 75px;
+  padding: 0;
 }
 
 footer p {
@@ -261,7 +233,7 @@ footer .right-content {
       display: block;
   }
   .logo {
-    max-width: 75%; /* Adjust the size as needed */
+    max-width: 75%; 
   }
   .senate-logo {
     max-width: 75%;
@@ -271,16 +243,16 @@ footer .right-content {
   }
   .senate-logo-div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
-
 
 @media (max-width: 576px) {
   body{
     padding-top: 106px;
-  } 
+  }
 }
+
 
 
 

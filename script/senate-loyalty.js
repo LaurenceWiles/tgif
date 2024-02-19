@@ -7,10 +7,9 @@ fetch('https://api.propublica.org/congress/v1/116/senate/members.json', {
   let members = json.results[0].members;
   membersArr = [...members];
   atAGlanceTable(membersArr);
-  console.log(membersArr)
   leastLoyalTable(membersArr);
   mostLoyalTable(membersArr);
-  } ) 
+  }) 
 .catch(err => console.log(err));
 
 const atAGlanceTable = (arr) => {
@@ -47,38 +46,6 @@ const atAGlanceTable = (arr) => {
   
   } 
 
-  const mostLoyalTable = (arr) => {
-
-    let sorted = arr.sort((a,b) => (a.votes_with_party_pct > b.votes_with_party_pct) ? 1: ((b.votes_with_party_pct > a.votes_with_party_pct) ? -1 : 0));
-    let tenPercent = Math.round(arr.length / 10);
-    let mostLoyal = [];
-    for (let i = sorted.length - 1; i > (sorted.length - 1) - tenPercent; i--) {
-      mostLoyal.push(sorted[i]);
-    }
-    for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-      if (sorted[i].votes_with_party_pct === mostLoyal[9].votes_with_party_pct) {
-        mostLoyal.push(sorted[i]);
-      }
-    }
-  
-    const tbody = document.getElementById('most_loyal_tbody')
-    for (let i = 0; i < mostLoyal.length; i++) {
-      
-      const tr = document.createElement("tr");
-      tbody.appendChild(tr);
-  
-      const name = tr.insertCell(0);
-      name.innerHTML = mostLoyal[i].first_name + " " + mostLoyal[i].last_name;
-  
-      const nrPartyVotes = tr.insertCell(1);
-      nrPartyVotes.innerHTML = Math.round(mostLoyal[i].total_votes / 100 + mostLoyal[i].votes_with_party_pct) ;
-  
-      const percentPartyVotes = tr.insertCell(2);
-      percentPartyVotes.innerHTML = mostLoyal[i].votes_with_party_pct;
-    }
-  
-  }
-
   const leastLoyalTable = (arr) => {
 
     let sorted = arr.sort((b,a) => (a.votes_with_party_pct > b.votes_with_party_pct) ? 1: ((b.votes_with_party_pct > a.votes_with_party_pct) ? -1 : 0));
@@ -88,12 +55,13 @@ const atAGlanceTable = (arr) => {
       leastLoyal.push(sorted[i]);
     }
     for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
-      if (sorted[i].votes_with_party_pct === leastLoyal[9].votes_with_party_pct) {
+      if (sorted[i].votes_with_party_pct === leastLoyal[leastLoyal.length - 1].votes_with_party_pct) {
         leastLoyal.push(sorted[i]);
       }
     }
   
-    const tbody = document.getElementById('least_loyal_tbody')
+    const tbody = document.getElementById('least_loyal_tbody');
+
     for (let i = 0; i < leastLoyal.length; i++) {
       
       const tr = document.createElement("tr");
@@ -103,11 +71,43 @@ const atAGlanceTable = (arr) => {
       name.innerHTML = leastLoyal[i].first_name + " " + leastLoyal[i].last_name;
   
       const nrPartyVotes = tr.insertCell(1);
-      nrPartyVotes.innerHTML = Math.round(leastLoyal[i].total_votes / 100 + leastLoyal[i].votes_with_party_pct) ;
+      nrPartyVotes.innerHTML = Math.round(leastLoyal[i].total_votes / 100 + leastLoyal[i].votes_with_party_pct);
   
       const percentPartyVotes = tr.insertCell(2);
       percentPartyVotes.innerHTML = leastLoyal[i].votes_with_party_pct;
     }
-
   }
 
+  const mostLoyalTable = (arr) => {
+
+    let sorted = arr.sort((a,b) => (a.votes_with_party_pct > b.votes_with_party_pct) ? 1: ((b.votes_with_party_pct > a.votes_with_party_pct) ? -1 : 0));
+    let tenPercent = Math.round(arr.length / 10);
+    let mostLoyal = [];
+    for (let i = sorted.length - 1; i > (sorted.length - 1) - tenPercent; i--) {
+      mostLoyal.push(sorted[i]);
+    }
+    for (let i = (sorted.length - 1) - tenPercent; i >= 0; i--) {
+      if (sorted[i].votes_with_party_pct === mostLoyal[mostLoyal.length - 1].votes_with_party_pct) {
+        mostLoyal.push(sorted[i]);
+      }
+    }
+  
+    const tbody = document.getElementById('most_loyal_tbody');
+
+    for (let i = 0; i < mostLoyal.length; i++) {
+      
+      const tr = document.createElement("tr");
+      tbody.appendChild(tr);
+  
+      const name = tr.insertCell(0);
+      name.innerHTML = mostLoyal[i].first_name + " " + mostLoyal[i].last_name;
+  
+      const nrPartyVotes = tr.insertCell(1);
+      nrPartyVotes.innerHTML = Math.round(mostLoyal[i].total_votes / 100 + mostLoyal[i].votes_with_party_pct);
+  
+      const percentPartyVotes = tr.insertCell(2);
+      percentPartyVotes.innerHTML = mostLoyal[i].votes_with_party_pct;
+    }
+  }
+
+  
