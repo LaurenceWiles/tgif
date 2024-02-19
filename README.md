@@ -15,9 +15,9 @@ Transparent Government in Fact (TGIF) is a non-partisan non-profit group aiming 
 -**Least Engaged Table**: Lists representatives with the lowest rates of engagement.
 
 ### Technologies Used:
-JavaScript
-Fetch API for data retrieval
-HTML CSS and Bootstrap for webpage structure and styling
+-**JavaScript**
+-**Fetch API** for data retrieval
+-**HTML CSS** and **Bootstrap** for webpage structure and styling
 
 ### How to Use:
 Clone the repository to your local machine.
