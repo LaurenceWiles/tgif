@@ -1,4 +1,4 @@
-﻿## TGIF Project developed for Ubiqum bootcamp
+﻿## TGIF Project developed for Ubiqum Code Academy
 
 ### Overview:
 Transparent Government in Fact (TGIF) is a non-partisan non-profit group aiming to increase the public’s involvement in government. This project utilizes data from the ProPublica Congress API to analyze and visualize the loyalty and engagement levels of members of the U.S. Congress. It generates tables displaying various statistics, including the number of representatives from each party, their average rates of loyalty and engagement, and the representatives with the highest and lowest rates of loyalty and engagement.
